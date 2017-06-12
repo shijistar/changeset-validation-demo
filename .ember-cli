@@ -5,5 +5,9 @@
 
     Setting `disableAnalytics` to true will prevent any data from being sent.
   */
-  "disableAnalytics": false
+  "disableAnalytics": false,
+  "port": 42405,
+  "live-reload": true,
+  "live-reload-port": "49105",
+  "environment": "development"
 }

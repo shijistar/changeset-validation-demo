@@ -1,0 +1,23 @@
+.form-row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-row:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.row-label {
+    float: left;
+    width: 100px;
+}
+
+.row-content {
+    padding-left: 100px;
+}
+
+.form-errors {
+    color: darkred;
+}

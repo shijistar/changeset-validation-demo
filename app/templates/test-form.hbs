@@ -1,0 +1,98 @@
+<div class="page">
+    <div class="page-title">
+        <h2>A Testing Form</h2>
+    </div>
+    <div class="page-body">
+        <form>
+            <div class="form-header"></div>
+            <div class="form-body">
+                <div class="form-row">
+                    <label class="row-label">Name</label>
+                    <div class="row-content">
+                        {{input type="text" class="form-control" value=changeset.name}}
+                        {{#if changeset.error.name}}
+                            <span id="first-name-msg">{{changeset.error.name.validation}}</span>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label class="row-label">Age</label>
+                    <div class="row-content">
+                        {{input type="text" class="form-control" value=changeset.age}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label class="row-label">Email</label>
+                    <div class="row-content">
+                        {{input type="text" class="form-control" value=changeset.email}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label class="row-label">Rank</label>
+                    <div class="row-content">
+                        <select onchange= {{action 'changeLevel'}}>
+                            <option value="1" selected= {{eq changeset.level 1}}>Staff</option>
+                            <option value="2" selected= {{eq changeset.level 2}}>Leader</option>
+                            <option value="3" selected= {{eq changeset.level 3}}>Department Manager</option>
+                            <option value="4" selected= {{eq changeset.level 4}}>Regional Manager</option>
+                            <option value="5" selected= {{eq changeset.level 5}}>General Manager</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label class="row-label ">Roles</label>
+                    <div class="row-content ">
+                        <label>
+                            <input type="checkbox" value="1" checked= {{contains 1 changeset.roles}} onclick= {{action 'changeRole'}}>
+                            <span>Administrator</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" value="2" checked= {{contains 2 changeset.roles}} onclick= {{action 'changeRole'}}>
+                            <span>Employee</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" value="3" checked= {{contains 3 changeset.roles}} onclick= {{action 'changeRole'}}>
+                            <span>Guest</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="activities-section">
+                    <div class="section-heading">
+                        <h3>Activities</h3>
+                    </div>
+                    <div class="activities">
+                        {{#each changeset.activities as |activity index|}}
+                            <div class="form-row">
+                                <label class="row-label">Activity {{add index 1}}</label>
+                                <div class="row-content">
+                                    {{input type="text" class="form-control" value=activity.name}}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <label class="row-label">Duration</label>
+                                <div class="row-content">
+                                    {{input type="text" class="form-control" value=activity.duration}} minutes
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-footer">
+                <div class="form-actions">
+                    <button {{action "save"}}>Save</button>
+                </div>
+            </div>
+            {{#if changeset.isInvalid}}
+                <div class="form-errors">
+                    <p>Ops, there were one or more errors in your form</p>
+                    <ul>
+                        {{#each changeset.errors as |error|}}
+                            <li>{{error.key}}: {{error.validation}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/if}}
+        </form>
+    </div>
+</div>
